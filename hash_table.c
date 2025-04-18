@@ -41,24 +41,10 @@ const char* auth;
 	switch (table[index].status)
 	{
 		case available :
-#if 0			
-			len = strlen(auth);
-			strcpy(table[index].author, auth);
-			table[index].author[len] = 0;
-			table[index].key = key;
-			table[index].status = unavailable;
-#endif
 			store_bucket(index, auth, key);			
 			break;
 		case unavailable :
 			index++;
-#if 0			
-			len = strlen(auth);
-			strcpy(table[index].author, auth);
-			table[index].author[len] = 0;
-			table[index].key = key;
-			table[index].status = unavailable;
-#endif
 			store_bucket(index, auth, key);			
 			break;
 	}
