@@ -6,8 +6,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <time.h>
-enum {max_len = 255};
-enum {table_size = 1024};
+#include "hash_table.h"
 enum action{bib_creat, bib_modify};
 typedef struct
 {

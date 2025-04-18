@@ -5,6 +5,7 @@ static bib_entry_t ent;
 
 static build_string(src, dst);
 static read_author(src, key);
+static store_bibfind_entry(ent);
 
 static build_string(src, dst)
 char* src;
@@ -33,9 +34,16 @@ int key;
         ent.key = key;
 }
 
+static store_bibfind_entry(ent)
+bib_entry_t* ent;
+{
+	hash_store(ent->key, ent->author);
+}
+
 init()
 {
 	srand(time(NULL));
+	hash_table_init();
 }
 
 bib_entry(act, key)
@@ -46,6 +54,7 @@ int key;
 	{
 		case bib_creat :
 			creat_bib_entry(in_buf, key);
+			store_bibfind_entry(&ent);
 			break;
 		case bib_modify :
 			break;
