@@ -68,9 +68,21 @@ bib_key()
 	return key;
 }
 
-bib_find()
+bucket_t bib_find(key, author)
+int key;
+const char* author;
 {
-
+	bucket_t b;
+	int index;
+	index = hash(key);
+	for (;;)
+	{
+		b = hash_table_find(index);
+		if (0 == strcmp(b.author, author))
+			return b;
+		index++;
+	}
+	return b;
 }
 
 bib_update()

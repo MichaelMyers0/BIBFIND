@@ -16,8 +16,6 @@ int key;
 	table[index].status = unavailable;
 }
 
-static hash(key);
-
 hash_table_init()
 {
 	int i;
@@ -25,7 +23,7 @@ hash_table_init()
 		table[i].status = available;
 }
 
-static hash(key)
+hash(key)
 int key;
 {
 	return key / table_size;
@@ -48,4 +46,10 @@ const char* auth;
 			store_bucket(index, auth, key);			
 			break;
 	}
+}
+
+bucket_t hash_table_find(index)
+int index;
+{
+	return table[index];
 }

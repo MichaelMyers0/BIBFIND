@@ -16,6 +16,6 @@ typedef struct
 init();
 bib_entry(act, key);
 bib_key();
-bib_find();
+bucket_t bib_find(key, author);
 bib_update();
 #endif

@@ -12,5 +12,7 @@ typedef struct
 	enum bucket_status status;
 }bucket_t;
 hash_table_init();
+hash(key);
 hash_store(key, auth);
+bucket_t hash_table_find(key);
 #endif
