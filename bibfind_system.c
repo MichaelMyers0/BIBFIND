@@ -17,7 +17,7 @@ char* dst;
 	*(dst + len) = 0;
 }
 
-static read_author(src, key)
+static creat_bib_entry(src, key)
 char* src;
 int key;
 {
@@ -45,7 +45,7 @@ int key;
 	switch (act)
 	{
 		case bib_creat :
-			read_author(in_buf, key);
+			creat_bib_entry(in_buf, key);
 			break;
 		case bib_modify :
 			break;
