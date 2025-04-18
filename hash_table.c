@@ -1,6 +1,20 @@
 #include "hash_table.h"
 
 static bucket_t table[table_size];
+static store_bucket(index, auth, key);
+
+static store_bucket(index, auth, key)
+int index;
+const char* auth;
+int key;
+{
+	size_t len;
+	len = strlen(auth);
+	strcpy(table[index].author, auth);
+	table[index].author[len] = 0;
+	table[index].key = key;
+	table[index].status = unavailable;
+}
 
 static hash(key);
 
@@ -27,19 +41,25 @@ const char* auth;
 	switch (table[index].status)
 	{
 		case available :
+#if 0			
 			len = strlen(auth);
 			strcpy(table[index].author, auth);
 			table[index].author[len] = 0;
 			table[index].key = key;
 			table[index].status = unavailable;
+#endif
+			store_bucket(index, auth, key);			
 			break;
 		case unavailable :
 			index++;
+#if 0			
 			len = strlen(auth);
 			strcpy(table[index].author, auth);
 			table[index].author[len] = 0;
 			table[index].key = key;
 			table[index].status = unavailable;
+#endif
+			store_bucket(index, auth, key);			
 			break;
 	}
 }
