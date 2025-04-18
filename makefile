@@ -1,5 +1,7 @@
 CC=cc
 CCFLAGS=-Wall -Wextra
-main:main.c
-	$(CC) $(CCFLAGS) -g -O $< -o $@
+bibfind_system.o:bibfind_system.c
+	$(CC) $(CCFLAGS) -g -c $< -o $@
+main:main.c bibfind_system.o
+	$(CC) $(CCFLAGS) -g -O $^ -o $@
 
