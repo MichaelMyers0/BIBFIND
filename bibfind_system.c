@@ -4,6 +4,7 @@ static char in_buf[max_len];
 static bib_entry_t ent;
 
 static build_string(src, dst);
+static read_author(src, key);
 
 static build_string(src, dst)
 char* src;
@@ -16,6 +17,22 @@ char* dst;
 	*(dst + len) = 0;
 }
 
+static read_author(src, key)
+char* src;
+int key;
+{
+	char* s;
+        errno = 0;
+        s = fgets(src, max_len, stdin);
+        if (!s)
+        {
+                perror("ERROR: Failed to read authors name\n");
+                exit(1);
+        }
+        build_string(src, ent.author);
+        ent.key = key;
+}
+
 init()
 {
 	srand(time(NULL));
@@ -25,18 +42,14 @@ bib_entry(act, key)
 enum action act;
 int key;
 {
-	char* s;
-	size_t len;
-
-	errno = 0;
-	s = fgets(in_buf, max_len, stdin);
-	if (!s)
+	switch (act)
 	{
-		perror("ERROR: Failed to read authors name\n");
-		exit(1);
+		case bib_creat :
+			read_author(in_buf, key);
+			break;
+		case bib_modify :
+			break;
 	}
-	build_string(in_buf, ent.author);
-	ent.key = key;
 }
 
 bib_key()
